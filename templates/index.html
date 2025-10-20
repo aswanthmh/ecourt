@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eCourts Listing Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>eCourts Listing Checker</h1>
+
+        <form method="POST">
+            <label>Select mode:</label>
+            <select name="mode">
+                <option value="case">Case</option>
+                <option value="causelist">Cause List</option>
+            </select>
+
+            <label>CNR Number (if checking case):</label>
+            <input type="text" name="cnr_number" placeholder="Enter CNR Number">
+
+            <label>State:</label>
+            <input type="text" name="state" placeholder="Enter State">
+
+            <label>District:</label>
+            <input type="text" name="district" placeholder="Enter District">
+
+            <label>Court:</label>
+            <input type="text" name="court" placeholder="Enter Court">
+
+            <label>Cause List Date:</label>
+            <input type="text" name="cause_date" placeholder="dd-mm-yyyy">
+
+            <label>Captcha:</label>
+            <input type="text" name="captcha" placeholder="Enter Captcha">
+
+            <button type="submit">Check</button>
+        </form>
+
+        {% if results %}
+        <div class="results">
+            <p><strong>Case Number:</strong> {{ results.case_number }}</p>
+            <p><strong>Listed Date:</strong> {{ results.listed_date }}</p>
+            <p><strong>Serial Number:</strong> {{ results.serial_number }}</p>
+            <p><strong>Court Name:</strong> {{ results.court_name }}</p>
+            <p><strong>PDF Available:</strong> {{ results.pdf_available }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
